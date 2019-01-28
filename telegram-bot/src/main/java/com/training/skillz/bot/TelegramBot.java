@@ -1,4 +1,4 @@
-package com.training.skillz;
+package com.training.skillz.bot;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -11,11 +11,11 @@ import javax.annotation.PostConstruct;
 
 @Component
 @Slf4j
-public class SkillzBot extends TelegramLongPollingBot {
+public class TelegramBot extends TelegramLongPollingBot {
 
-    private SkillzBotProperties properties;
+    private TelegramBotProperties properties;
 
-    public SkillzBot(SkillzBotProperties properties) {
+    public TelegramBot(TelegramBotProperties properties) {
         this.properties = properties;
     }
 
