@@ -2,7 +2,6 @@ buildscript {
 	ext {
 		springBootVersion = '2.1.2.RELEASE'
 		jsoupVersion = "1.8.3"
-
 	}
 	repositories {
 		mavenCentral()
@@ -13,6 +12,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -35,12 +35,10 @@ repositories {
 dependencies {
 	/*Commons*/
 	compileOnly 'org.projectlombok:lombok:1.18.4'
+	compile 'com.fasterxml.jackson.core:jackson-databind'
+	compile 'com.google.guava:guava:25.1-jre'
 
-	/*Spring*/
-	compile 'org.springframework.boot:spring-boot-starter'
-	compile 'org.springframework.boot:spring-boot-configuration-processor'
-	compile 'org.springframework.boot:spring-boot-starter-web'
+	/*DB*/
+	compile 'org.hibernate.validator:hibernate-validator'
 
-	/*Api*/
-	compile 'org.telegram:telegrambots-spring-boot-starter:4.1'
 }

@@ -35,6 +35,7 @@ repositories {
 dependencies {
 	/*Commons*/
 	compileOnly 'org.projectlombok:lombok:1.18.4'
+	compile project(':commons')
 
 	/*Spring*/
 	compile 'org.springframework.boot:spring-boot-starter'
@@ -42,5 +43,12 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-web'
 
 	/*Api*/
-	compile 'org.telegram:telegrambots-spring-boot-starter:4.1'
+	compile 'com.google.apis:google-api-services-gmail:v1-rev98-1.25.0'
+
+	/*DB*/
+	runtimeOnly 'com.h2database:h2'
+
+	/*Test*/
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 }

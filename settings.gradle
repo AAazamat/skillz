@@ -1,2 +1,4 @@
 rootProject.name = 'skillz'
 include 'telegram-bot'
+include 'mail-server'
+include 'commons'
