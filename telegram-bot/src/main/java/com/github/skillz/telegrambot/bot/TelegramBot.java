@@ -41,15 +41,22 @@ public class TelegramBot extends TelegramLongPollingBot {
         log.info(update.toString());
 
         if (update.hasMessage() && update.getMessage().hasText()) {
-            // Set variables
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
+            SendMessage message;
 
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, new HttpEntity<>(Collections.singletonMap("message", messageText)), String.class);
+            if ("/start".equalsIgnoreCase(messageText)) {
+                RestTemplate restTemplate = new RestTemplate();
+                ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.GET, new HttpEntity<>(Collections.singletonMap("message", messageText)), String.class);
+                log.info(responseEntity.toString());
+                message = new SendMessage().setChatId(chatId)
+                        .setText(Objects.requireNonNull(responseEntity.getBody()));
 
-            SendMessage message = new SendMessage().setChatId(chatId)
-                    .setText(Objects.requireNonNull((responseEntity).getBody()));
+            } else {
+                message = new SendMessage().setChatId(chatId)
+                        .setText(messageText + " response");
+            }
+
             try {
                 execute(message);
             } catch (TelegramApiException e) {
