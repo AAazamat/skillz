@@ -47,14 +47,14 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if ("/start".equalsIgnoreCase(messageText)) {
                 RestTemplate restTemplate = new RestTemplate();
-                ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.GET, new HttpEntity<>(Collections.singletonMap("message", messageText)), String.class);
+                ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiUrl, String.class);
                 log.info(responseEntity.toString());
                 message = new SendMessage().setChatId(chatId)
                         .setText(Objects.requireNonNull(responseEntity.getBody()));
 
             } else {
                 message = new SendMessage().setChatId(chatId)
-                        .setText(messageText + " response");
+                                           .setText("Неизвестная команда");
             }
 
             try {
