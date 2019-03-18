@@ -1,4 +1,4 @@
-package com.github.skillz.mailserver.dao;
+package com.github.skillz.mailserver.entity;
 
 import lombok.*;
 
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @ToString
-public class UserDao {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
